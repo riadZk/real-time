@@ -20,7 +20,7 @@ class OrderPlaced implements ShouldBroadcast
     {
         $this->order = $order;
         $this->restaurant = $restaurant;
-        $this->message = "New order #{$order->id} has been placed for {$restaurant->name}.";
+        $this->message = "New order has been placed .";
     }
 
     public function broadcastOn()

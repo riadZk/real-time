@@ -7,19 +7,19 @@ use App\Events\OrderPlaced;
 
 class OrderController extends Controller
 {
-    public function store()
+    public function order()
     {
-        // // Create the order
-        // $order = Order::create([
-        //     'restaurant_id' => $request->restaurant_id,
-        //     'details' => $request->details,
-        // ]);
 
-        // // Get the restaurant
-        // $restaurant = Restaurant::find($request->restaurant_id);
+        $order = [
+            'customer_name' => 'John Doe',
+            'customer_email' => 'john@example.com',
+            'customer_phone' => '1234567890',
+            'order_total' => 100,
+            'restaurant_id' => 1,
+        ];
 
-        // // Broadcast the event
-        // event(new OrderPlaced($order, $restaurant));
+        $restaurant = Restaurant::find($order['restaurant_id']);
+        event(new OrderPlaced($order, $restaurant));
 
         return response()->json(['message' => 'Order placed successfully!']);
     }

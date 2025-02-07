@@ -5,7 +5,10 @@ use App\Events\TestEvent;
 use Illuminate\Support\Facades\Route;
 use App\Events\RestaurantNotification;
 use App\Models\Restaurant;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\OrderController;
 
+Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login2');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('/TEST', function () {
@@ -43,4 +46,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // Route::get('order', [OrderController::class, 'order']);
+
 });

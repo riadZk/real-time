@@ -22,14 +22,39 @@
                 });
 
 
-            window.Echo.private('restaurant.' + restaurantId)
-                .listen('RestaurantNotification', (event) => {
-                    console.log('New notification for restaurant: ', event.notification_data);
-                    alert(event.notification_data.message);
-                });
+            // window.Echo.private('restaurant.' + restaurantId)
+            //     .listen('RestaurantNotification', (event) => {
+            //         console.log('New notification for restaurant: ', event.notification_data);
+            //         alert(event.notification_data.message);
+            //     });
 
-            
+
         }, 200);
     </script>
+
+    {{-- <script>
+        // Pass authenticated user ID and restaurant ID from Laravel to JavaScript
+        const userId = @json(auth()->id());
+        const restaurantId = @json(optional(auth()->user()->restaurant)->id);
+
+        setTimeout(() => {
+            // Listen for notifications for the user (owner)
+            if (userId) {
+                window.Echo.private(`user.${userId}`)
+                    .listen('OrderPlaced', (e) => {
+                        console.log('User Notification:', e.message);
+                    });
+            }
+
+            // Listen for notifications for the team (staff)
+            if (restaurantId) {
+                window.Echo.private(`team.${restaurantId}`)
+                    .listen('OrderPlaced', (e) => {
+                        console.log('Team Notification:', e.message);
+                    });
+            }
+        }, 200);
+    </script> --}}
+
 </body>
 </html>
